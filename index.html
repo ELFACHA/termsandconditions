@@ -1,11 +1,771 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark" data-lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Términos y Condiciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Album Tracker — Legal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Variables ─────────────────────────────────────────────────── */
+    :root {
+      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg:        #080E1A;
+      --bg2:       #0D1420;
+      --bg3:       #111827;
+      --surface:   #1E2A3A;
+      --border:    rgba(212, 175, 55, 0.15);
+      --border2:   rgba(212, 175, 55, 0.08);
+      --gold:      #D4AF37;
+      --gold2:     #FFF0A0;
+      --text:      #F0F4FF;
+      --muted:     #94A3B8;
+      --muted2:    #64748B;
+      --card-bg:   rgba(30, 42, 58, 0.6);
+      --card-hover:rgba(30, 42, 58, 0.9);
+      --glow:      rgba(212, 175, 55, 0.15);
+    }
+
+    [data-theme="light"] {
+      --bg:        #F0F4FF;
+      --bg2:       #E8EEFF;
+      --bg3:       #FFFFFF;
+      --surface:   #FFFFFF;
+      --border:    rgba(26, 58, 107, 0.15);
+      --border2:   rgba(26, 58, 107, 0.08);
+      --gold:      #1A3A6B;
+      --gold2:     #0A1F45;
+      --text:      #0A1628;
+      --muted:     #4A5568;
+      --muted2:    #94A3B8;
+      --card-bg:   rgba(255, 255, 255, 0.8);
+      --card-hover:rgba(255, 255, 255, 1);
+      --glow:      rgba(26, 58, 107, 0.08);
+    }
+
+    /* ── Reset ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ──────────────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    /* ── Background layers ─────────────────────────────────────────── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    [data-theme="dark"] .bg-layer {
+      background:
+        radial-gradient(ellipse 100% 60% at 50% -10%, rgba(26,58,107,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 90% 100%, rgba(212,175,55,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 5% 80%, rgba(26,58,107,0.2) 0%, transparent 60%);
+    }
+
+    [data-theme="light"] .bg-layer {
+      background:
+        radial-gradient(ellipse 100% 50% at 50% -10%, rgba(26,58,107,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 90% 100%, rgba(26,58,107,0.05) 0%, transparent 60%);
+    }
+
+    /* Stars canvas (dark only) */
+    #stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    [data-theme="dark"] #stars { opacity: 1; }
+
+    /* ── Layout ────────────────────────────────────────────────────── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Controls bar ──────────────────────────────────────────────── */
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 64px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .ctrl-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--glow);
+    }
+
+    .ctrl-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--glow);
+    }
+
+    /* Theme toggle icon */
+    .theme-icon { font-size: 14px; }
+
+    /* ── Hero ──────────────────────────────────────────────────────── */
+    header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* Album icon circle */
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 28px;
+      border-radius: 22px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      position: relative;
+      animation: fadeUp 0.7s 0.15s ease both;
+      box-shadow: 0 0 40px var(--glow);
+    }
+
+    [data-theme="dark"] .hero-icon::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 23px;
+      background: linear-gradient(135deg, rgba(212,175,55,0.3), transparent 60%);
+      pointer-events: none;
+    }
+
+    .brand {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 8vw, 58px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 8px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    [data-theme="dark"] .brand {
+      background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 50%, #FFF0A0 70%, #D4AF37 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp 0.7s 0.2s ease both, shimmer 4s linear 1s infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .brand em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.7s 0.28s ease both;
+    }
+
+    /* ── Section label ─────────────────────────────────────────────── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 20px;
+      padding-left: 4px;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    /* ── Cards ─────────────────────────────────────────────────────── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 26px 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--text);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px var(--border);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    /* Shine sweep on hover */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+      transition: left 0.5s ease;
+      pointer-events: none;
+    }
+    .card:hover::after { left: 140%; }
+
+    .card:nth-child(1) { animation: fadeUp 0.7s 0.4s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.7s 0.5s ease both; }
+    .card:nth-child(3) { animation: fadeUp 0.7s 0.6s ease both; }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card:hover .card-icon {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--glow);
+    }
+
+    .card-body {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 4px;
+      transition: color 0.25s;
+    }
+
+    .card:hover .card-title { color: var(--gold); }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--glow);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .card-arrow {
+      font-size: 18px;
+      color: var(--muted2);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card:hover .card-arrow {
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    /* ── Divider ───────────────────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px 0;
+      animation: fadeUp 0.7s 0.65s ease both;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border2);
+    }
+
+    .divider-text {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    /* ── App badge ─────────────────────────────────────────────────── */
+    .app-badge {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border2);
+      border-radius: 14px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      animation: fadeUp 0.7s 0.7s ease both;
+      transition: all 0.3s ease;
+    }
+
+    .app-badge:hover {
+      border-color: var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+
+    .badge-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .badge-text { flex: 1; }
+
+    .badge-title {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .badge-desc {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .badge-store {
+      display: flex;
+      gap: 6px;
+    }
+
+    .store-btn {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--gold);
+      background: var(--glow);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .store-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ── Footer ────────────────────────────────────────────────────── */
+    footer {
+      margin-top: 56px;
+      text-align: center;
+      animation: fadeUp 0.7s 0.8s ease both;
+    }
+
+    .footer-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--muted2);
+      opacity: 0.4;
+    }
+
+    .footer-dot:nth-child(2) { opacity: 0.7; }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-text a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ── Hidden translation ────────────────────────────────────────── */
+    [data-lang="es"] .en { display: none; }
+    [data-lang="en"] .es { display: none; }
+
+    /* ── Animations ────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 520px) {
+      .wrapper { padding: 40px 16px 60px; }
+      .card { padding: 20px 18px; gap: 14px; }
+      .card-icon { width: 44px; height: 44px; font-size: 18px; }
+      .badge-store { flex-direction: column; }
+      .controls { margin-bottom: 48px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Bienvenido</h1>
-  <p><a href="politica_privacidad.html">Ver Política de Privacidad</a></p>
+
+<canvas id="stars"></canvas>
+<div class="bg-layer"></div>
+
+<div class="wrapper">
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="ctrl-btn" id="langBtn" onclick="toggleLang()">
+      <span class="es">English</span>
+      <span class="en">Español</span>
+    </button>
+    <button class="ctrl-btn" id="themeBtn" onclick="toggleTheme()">
+      <span class="theme-icon es" id="themeIconEs">☀️</span>
+      <span class="theme-icon en" id="themeIconEn">☀️</span>
+      <span class="es"> Claro</span>
+      <span class="en"> Light</span>
+    </button>
+  </div>
+
+  <!-- Hero -->
+  <header>
+    <div class="eyebrow">
+      <span class="es">Ivan Cardozo · Argentina</span>
+      <span class="en">Ivan Cardozo · Argentina</span>
+    </div>
+    <div class="hero-icon">📒</div>
+    <h1 class="brand"><em>Album</em> Tracker</h1>
+    <p class="subtitle">
+      <span class="es">Documentos legales de la aplicación</span>
+      <span class="en">Application legal documents</span>
+    </p>
+  </header>
+
+  <!-- Documents section -->
+  <p class="section-label">
+    <span class="es">Documentos</span>
+    <span class="en">Documents</span>
+  </p>
+
+  <div class="cards">
+
+    <!-- Privacy Policy -->
+    <a class="card" href="politica_privacidad.html">
+      <div class="card-icon">🔒</div>
+      <div class="card-body">
+        <div class="card-title">
+          <span class="es">Política de Privacidad</span>
+          <span class="en">Privacy Policy</span>
+        </div>
+        <div class="card-desc">
+          <span class="es">Cómo recopilamos, usamos y protegemos tus datos personales en Album Tracker.</span>
+          <span class="en">How we collect, use and protect your personal data in Album Tracker.</span>
+        </div>
+        <span class="card-tag">
+          <span class="es">Última actualización: 30 abril 2026</span>
+          <span class="en">Last updated: April 30, 2026</span>
+        </span>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
+
+    <!-- Terms of Service -->
+    <a class="card" href="terminos.html">
+      <div class="card-icon">📋</div>
+      <div class="card-body">
+        <div class="card-title">
+          <span class="es">Términos y Condiciones</span>
+          <span class="en">Terms & Conditions</span>
+        </div>
+        <div class="card-desc">
+          <span class="es">Las reglas y condiciones para usar Album Tracker correctamente.</span>
+          <span class="en">The rules and conditions for properly using Album Tracker.</span>
+        </div>
+        <span class="card-tag">
+          <span class="es">Última actualización: 30 abril 2026</span>
+          <span class="en">Last updated: April 30, 2026</span>
+        </span>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
+
+    <!-- Contact -->
+    <a class="card" href="mailto:ivancardozo.dev@gmail.com">
+      <div class="card-icon">✉️</div>
+      <div class="card-body">
+        <div class="card-title">
+          <span class="es">Contacto</span>
+          <span class="en">Contact</span>
+        </div>
+        <div class="card-desc">
+          <span class="es">¿Dudas o consultas? Escribinos a ivancardozo.dev@gmail.com</span>
+          <span class="en">Questions or enquiries? Write to ivancardozo.dev@gmail.com</span>
+        </div>
+        <span class="card-tag">
+          <span class="es">Correo directo</span>
+          <span class="en">Direct email</span>
+        </span>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
+
+  </div>
+
+  <!-- Divider -->
+  <div class="divider">
+    <span class="divider-text">
+      <span class="es">La aplicación</span>
+      <span class="en">The app</span>
+    </span>
+  </div>
+
+  <!-- App badge -->
+  <div class="app-badge">
+    <div class="badge-icon">📒</div>
+    <div class="badge-text">
+      <div class="badge-title">Album Tracker</div>
+      <div class="badge-desc">
+        <span class="es">Seguimiento de figuritas · Disponible en Android</span>
+        <span class="en">Sticker tracking app · Available on Android</span>
+      </div>
+    </div>
+    <div class="badge-store">
+      <a class="store-btn" href="https://play.google.com/store" target="_blank">
+        <span class="es">Play Store</span>
+        <span class="en">Play Store</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-dots">
+      <div class="footer-dot"></div>
+      <div class="footer-dot"></div>
+      <div class="footer-dot"></div>
+    </div>
+    <p class="footer-text">
+      <span class="es">© 2026 Album Tracker · Ivan Cardozo · Argentina</span>
+      <span class="en">© 2026 Album Tracker · Ivan Cardozo · Argentina</span>
+    </p>
+  </footer>
+
+</div><!-- /wrapper -->
+
+<script>
+  /* ── Stars ─────────────────────────────────────────────────────── */
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function initStars() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    const count = Math.floor((canvas.width * canvas.height) / 6000);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2,
+        a: Math.random(),
+        speed: Math.random() * 0.003 + 0.001,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function drawStars(t) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      const alpha = (Math.sin(t * s.speed + s.phase) + 1) / 2 * 0.6 + 0.1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 55, ${alpha * 0.5})`;
+      ctx.fill();
+      // Some white stars
+      if (s.r > 0.9) {
+        ctx.beginPath();
+        ctx.arc(s.x + 0.5, s.y + 0.5, s.r * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha * 0.4})`;
+        ctx.fill();
+      }
+    });
+    requestAnimationFrame(drawStars);
+  }
+
+  initStars();
+  window.addEventListener('resize', initStars);
+  requestAnimationFrame(drawStars);
+
+  /* ── Theme toggle ──────────────────────────────────────────────── */
+  const html = document.documentElement;
+  const themeBtn = document.getElementById('themeBtn');
+
+  function setTheme(t) {
+    html.setAttribute('data-theme', t);
+    localStorage.setItem('at-theme', t);
+    // Update button text
+    const isDark = t === 'dark';
+    document.querySelectorAll('.theme-icon').forEach(el => {
+      el.textContent = isDark ? '☀️' : '🌙';
+    });
+    document.querySelectorAll('[data-theme-light]').forEach(el => {
+      el.textContent = isDark ? ' Claro' : ' Oscuro';
+    });
+    // update the text nodes inside spans
+    themeBtn.querySelectorAll('.es').forEach(el => {
+      el.lastChild && (el.lastChild.textContent = isDark ? ' Claro' : ' Oscuro');
+    });
+    themeBtn.querySelectorAll('.en').forEach(el => {
+      el.lastChild && (el.lastChild.textContent = isDark ? ' Light' : ' Dark');
+    });
+  }
+
+  function toggleTheme() {
+    const cur = html.getAttribute('data-theme');
+    setTheme(cur === 'dark' ? 'light' : 'dark');
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('at-theme') || 'dark';
+  setTheme(savedTheme);
+
+  /* ── Lang toggle ───────────────────────────────────────────────── */
+  function toggleLang() {
+    const cur = html.getAttribute('data-lang');
+    const next = cur === 'es' ? 'en' : 'es';
+    html.setAttribute('data-lang', next);
+    localStorage.setItem('at-lang', next);
+  }
+
+  const savedLang = localStorage.getItem('at-lang') || 'es';
+  html.setAttribute('data-lang', savedLang);
+</script>
+
 </body>
 </html>
