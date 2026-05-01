@@ -1,228 +1,394 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark" data-lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Política de Privacidad — Album Tracker</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Album Tracker — Privacy Policy / Política de Privacidad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
-  :root {
-    --bg: #f7f4ef;
-    --ink: #1a1814;
-    --accent: #c8a96e;
-    --muted: #6b6560;
-    --rule: #ddd8d0;
-  }
+    [data-theme="dark"] {
+      --bg: #080E1A; --bg2: #0D1420; --bg3: #111827;
+      --surface: #1E2A3A; --border: rgba(212,175,55,0.15);
+      --border2: rgba(212,175,55,0.08); --gold: #D4AF37; --gold2: #FFF0A0;
+      --text: #F0F4FF; --body-text: #CBD5E1;
+      --muted: #94A3B8; --muted2: #64748B;
+      --card-bg: rgba(30,42,58,0.6); --glow: rgba(212,175,55,0.1);
+      --highlight: rgba(212,175,55,0.07);
+    }
+    [data-theme="light"] {
+      --bg: #F0F4FF; --bg2: #E8EEFF; --bg3: #FFFFFF;
+      --surface: #FFFFFF; --border: rgba(26,58,107,0.15);
+      --border2: rgba(26,58,107,0.08); --gold: #1A3A6B; --gold2: #0A1F45;
+      --text: #0A1628; --body-text: #334155;
+      --muted: #4A5568; --muted2: #94A3B8;
+      --card-bg: rgba(255,255,255,0.8); --glow: rgba(26,58,107,0.06);
+      --highlight: rgba(26,58,107,0.05);
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      transition: background var(--transition), color var(--transition);
+    }
 
-  header {
-    border-bottom: 1px solid var(--rule);
-    padding: 3rem 0 2rem;
-    text-align: center;
-    background: var(--ink);
-    color: var(--bg);
-  }
+    .bg-layer {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    }
+    [data-theme="dark"] .bg-layer {
+      background: radial-gradient(ellipse 100% 40% at 50% 0%, rgba(26,58,107,0.45) 0%, transparent 70%);
+    }
 
-  header .label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,14,26,0.85);
+      border-bottom: 1px solid var(--border2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    [data-theme="light"] nav {
+      background: rgba(240,244,255,0.9);
+    }
 
-  header h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.1;
-  }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
 
-  header .date {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #a09890;
-  }
+    .nav-back {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
 
-  main {
-    max-width: 740px;
-    margin: 0 auto;
-    padding: 4rem 2rem 6rem;
-  }
+    .nav-sep { color: var(--muted2); font-size: 12px; }
 
-  .intro {
-    font-size: 1.1rem;
-    color: var(--muted);
-    border-left: 3px solid var(--accent);
-    padding-left: 1.5rem;
-    margin-bottom: 3rem;
-    font-style: italic;
-  }
+    .nav-title {
+      font-family: 'Fraunces', serif;
+      font-size: 14px; font-weight: 400; color: var(--muted);
+    }
 
-  section {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--rule);
-  }
+    .nav-controls { display: flex; gap: 8px; }
 
-  section:last-child {
-    border-bottom: none;
-  }
+    .ctrl-btn {
+      background: var(--card-bg); border: 1px solid var(--border2);
+      color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 6px 12px;
+      border-radius: 100px; cursor: pointer;
+      transition: all 0.25s ease; backdrop-filter: blur(8px);
+    }
+    .ctrl-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-  h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    color: var(--ink);
-  }
+    /* ── Header ── */
+    header {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 72px 24px 56px;
+      border-bottom: 1px solid var(--border2);
+    }
 
-  h2 .num {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 0.25rem;
-  }
+    .header-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .header-eyebrow::before, .header-eyebrow::after {
+      content: ''; display: block; width: 24px; height: 1px;
+      background: var(--gold); opacity: 0.5;
+    }
 
-  p { margin-bottom: 1rem; color: #3a3630; }
+    header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 300; font-style: italic; line-height: 1.1;
+      color: var(--text); margin-bottom: 12px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    [data-theme="dark"] header h1 {
+      background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 60%, #FFF0A0 80%, #D4AF37 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp 0.6s 0.1s ease both, shimmer 4s linear 0.5s infinite;
+    }
+    @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
 
-  ul {
-    margin: 1rem 0 1rem 1.5rem;
-    color: #3a3630;
-  }
+    header .date {
+      font-size: 12px; color: var(--muted2); letter-spacing: 0.1em;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
 
-  ul li { margin-bottom: 0.4rem; }
+    /* ── Main ── */
+    main {
+      position: relative; z-index: 1;
+      max-width: 740px; margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
 
-  .highlight {
-    background: #ede9e0;
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    margin: 1.5rem 0;
-    font-size: 0.95rem;
-  }
+    .intro {
+      font-size: 1.05rem; color: var(--muted); font-style: italic;
+      border-left: 3px solid var(--gold); padding-left: 20px;
+      margin-bottom: 48px; line-height: 1.7;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
 
-  .contact-box {
-    background: var(--ink);
-    color: var(--bg);
-    border-radius: 12px;
-    padding: 2rem;
-    margin-top: 2rem;
-  }
+    /* ── Sections ── */
+    section {
+      margin-bottom: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid var(--border2);
+      animation: fadeUp 0.6s ease both;
+    }
+    section:last-child { border-bottom: none; margin-bottom: 0; }
 
-  .contact-box h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.3rem;
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 0.75rem;
-    color: var(--accent);
-  }
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem; font-weight: 400;
+      color: var(--text); margin-bottom: 16px;
+    }
 
-  .contact-box a { color: var(--accent); }
+    h2 .num {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px; font-weight: 500;
+    }
 
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.8rem;
-    color: var(--muted);
-    border-top: 1px solid var(--rule);
-  }
-</style>
+    p { margin-bottom: 14px; color: var(--body-text); font-size: 15px; }
+
+    ul { margin: 12px 0 12px 20px; color: var(--body-text); font-size: 15px; }
+    ul li { margin-bottom: 6px; }
+    ul li strong { color: var(--text); font-weight: 500; }
+
+    .highlight {
+      background: var(--highlight); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 18px 22px;
+      margin: 20px 0; font-size: 14px; color: var(--muted);
+    }
+
+    .contact-box {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px; margin-top: 28px;
+    }
+    [data-theme="dark"] .contact-box {
+      background: linear-gradient(135deg, #0D1420, #111827);
+    }
+
+    .contact-box h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem; font-weight: 300; font-style: italic;
+      color: var(--gold); margin-bottom: 10px;
+    }
+    .contact-box p { color: var(--muted); }
+    .contact-box a { color: var(--gold); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 28px;
+      border-top: 1px solid var(--border2);
+      font-size: 12px; color: var(--muted2);
+    }
+
+    /* ── Translations ── */
+    [data-lang="es"] .en { display: none; }
+    [data-lang="en"] .es { display: none; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      header { padding: 48px 16px 40px; }
+      main { padding: 40px 16px 60px; }
+      nav { padding: 12px 16px; }
+      .nav-title { display: none; }
+    }
+  </style>
 </head>
 <body>
 
+<div class="bg-layer"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-left">
+    <a class="nav-back" href="index.html">
+      ← <span class="es">Inicio</span><span class="en">Home</span>
+    </a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">
+      <span class="es">Política de Privacidad</span>
+      <span class="en">Privacy Policy</span>
+    </span>
+  </div>
+  <div class="nav-controls">
+    <button class="ctrl-btn" onclick="toggleLang()">
+      <span class="es">EN</span><span class="en">ES</span>
+    </button>
+    <button class="ctrl-btn" id="themeBtn" onclick="toggleTheme()">
+      <span id="themeIcon">☀️</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Header -->
 <header>
-  <div class="label">Documento legal</div>
-  <h1>Política de Privacidad</h1>
-  <div class="date">Última actualización: 30 de abril de 2026</div>
+  <div class="header-eyebrow">
+    <span class="es">Documento Legal</span>
+    <span class="en">Legal Document</span>
+  </div>
+  <h1>
+    <span class="es">Política de Privacidad</span>
+    <span class="en">Privacy Policy</span>
+  </h1>
+  <div class="date">
+    <span class="es">Última actualización: 30 de abril de 2026</span>
+    <span class="en">Last updated: April 30, 2026</span>
+  </div>
 </header>
 
+<!-- Main -->
 <main>
 
   <p class="intro">
-    Esta política describe cómo Album Tracker recopila, usa y protege tu información personal cuando usás la aplicación.
+    <span class="es">Esta política describe cómo Album Tracker recopila, usa y protege tu información personal cuando usás la aplicación.</span>
+    <span class="en">This policy describes how Album Tracker collects, uses, and protects your personal information when you use the app.</span>
   </p>
 
   <section>
-    <h2><span class="num">01</span>Información que recopilamos</h2>
-    <p>Album Tracker recopila los siguientes tipos de datos para brindarte el servicio:</p>
+    <h2><span class="num">01</span>
+      <span class="es">Información que recopilamos</span>
+      <span class="en">Information We Collect</span>
+    </h2>
+    <p>
+      <span class="es">Album Tracker recopila los siguientes tipos de datos para brindarte el servicio:</span>
+      <span class="en">Album Tracker collects the following types of data to provide the service:</span>
+    </p>
     <ul>
-      <li><strong>Datos de uso:</strong> información sobre cómo interactuás con la app (álbumes, figuritas, estadísticas).</li>
-      <li><strong>Identificadores de dispositivo:</strong> ID de publicidad para mostrar anuncios relevantes (solo si no contrataste la versión sin anuncios).</li>
-      <li><strong>Imágenes de cámara:</strong> usadas exclusivamente para escanear figuritas. No se almacenan ni comparten.</li>
-      <li><strong>Datos de compra:</strong> procesados por Google Play. No almacenamos datos de tarjetas de crédito.</li>
+      <li><strong><span class="es">Datos de uso:</span><span class="en">Usage data:</span></strong>
+        <span class="es"> información sobre cómo interactuás con la app (álbumes, figuritas, estadísticas).</span>
+        <span class="en"> information about how you interact with the app (albums, stickers, statistics).</span>
+      </li>
+      <li><strong><span class="es">Identificadores de dispositivo:</span><span class="en">Device identifiers:</span></strong>
+        <span class="es"> ID de publicidad para mostrar anuncios relevantes (solo si no contrataste la versión sin anuncios).</span>
+        <span class="en"> advertising ID to show relevant ads (only if you haven't purchased the ad-free version).</span>
+      </li>
+      <li><strong><span class="es">Imágenes de cámara:</span><span class="en">Camera images:</span></strong>
+        <span class="es"> usadas exclusivamente para escanear figuritas. No se almacenan ni comparten.</span>
+        <span class="en"> used exclusively to scan stickers. Not stored or shared.</span>
+      </li>
+      <li><strong><span class="es">Datos de compra:</span><span class="en">Purchase data:</span></strong>
+        <span class="es"> procesados por Google Play. No almacenamos datos de tarjetas de crédito.</span>
+        <span class="en"> processed by Google Play. We do not store credit card data.</span>
+      </li>
     </ul>
   </section>
 
   <section>
-    <h2><span class="num">02</span>Cómo usamos tu información</h2>
-    <p>Usamos la información recopilada para:</p>
+    <h2><span class="num">02</span>
+      <span class="es">Cómo usamos tu información</span>
+      <span class="en">How We Use Your Information</span>
+    </h2>
     <ul>
-      <li>Brindarte las funciones principales de la app (seguimiento de álbumes y figuritas).</li>
-      <li>Mostrar anuncios personalizados a través de Google AdMob.</li>
-      <li>Mejorar la experiencia del usuario mediante Firebase Analytics.</li>
-      <li>Procesar y verificar compras dentro de la app.</li>
-      <li>Enviar notificaciones relevantes (si las habilitás).</li>
+      <li><span class="es">Brindarte las funciones principales de la app.</span><span class="en">Provide the app's core features.</span></li>
+      <li><span class="es">Mostrar anuncios personalizados a través de Google AdMob.</span><span class="en">Show personalized ads through Google AdMob.</span></li>
+      <li><span class="es">Mejorar la experiencia del usuario mediante Firebase Analytics.</span><span class="en">Improve user experience via Firebase Analytics.</span></li>
+      <li><span class="es">Procesar y verificar compras dentro de la app.</span><span class="en">Process and verify in-app purchases.</span></li>
+      <li><span class="es">Enviar notificaciones relevantes (si las habilitás).</span><span class="en">Send relevant notifications (if enabled).</span></li>
     </ul>
   </section>
 
   <section>
-    <h2><span class="num">03</span>Servicios de terceros</h2>
-    <p>La app utiliza los siguientes servicios de terceros que tienen sus propias políticas de privacidad:</p>
+    <h2><span class="num">03</span>
+      <span class="es">Servicios de terceros</span>
+      <span class="en">Third-Party Services</span>
+    </h2>
     <ul>
-      <li><strong>Google AdMob</strong> — publicidad en la app</li>
-      <li><strong>Google Firebase</strong> — autenticación, base de datos y analytics</li>
-      <li><strong>Google Play Billing</strong> — procesamiento de pagos</li>
-      <li><strong>Supabase</strong> — almacenamiento de datos en la nube</li>
-      <li><strong>Google ML Kit</strong> — reconocimiento de texto por cámara</li>
+      <li><strong>Google AdMob</strong> — <span class="es">publicidad en la app</span><span class="en">in-app advertising</span></li>
+      <li><strong>Google Firebase</strong> — <span class="es">autenticación, base de datos y analytics</span><span class="en">authentication, database and analytics</span></li>
+      <li><strong>Google Play Billing</strong> — <span class="es">procesamiento de pagos</span><span class="en">payment processing</span></li>
+      <li><strong>Supabase</strong> — <span class="es">almacenamiento de datos en la nube</span><span class="en">cloud data storage</span></li>
+      <li><strong>Google ML Kit</strong> — <span class="es">reconocimiento de texto por cámara</span><span class="en">camera text recognition</span></li>
     </ul>
     <div class="highlight">
-      Estos servicios pueden recopilar información según sus propias políticas. Te recomendamos revisarlas en sus sitios oficiales.
+      <span class="es">Estos servicios pueden recopilar información según sus propias políticas. Te recomendamos revisarlas en sus sitios oficiales.</span>
+      <span class="en">These services may collect information according to their own policies. We recommend reviewing them on their official websites.</span>
     </div>
   </section>
 
   <section>
-    <h2><span class="num">04</span>Cámara y permisos</h2>
-    <p>La app solicita acceso a la cámara únicamente para escanear figuritas mediante reconocimiento de texto. Las imágenes se procesan localmente en tu dispositivo y <strong>no se almacenan ni se envían a ningún servidor</strong>.</p>
+    <h2><span class="num">04</span>
+      <span class="es">Cámara y permisos</span>
+      <span class="en">Camera & Permissions</span>
+    </h2>
+    <p>
+      <span class="es">La app solicita acceso a la cámara únicamente para escanear figuritas. Las imágenes se procesan localmente en tu dispositivo y <strong>no se almacenan ni se envían a ningún servidor</strong>.</span>
+      <span class="en">The app requests camera access only to scan stickers. Images are processed locally on your device and <strong>are not stored or sent to any server</strong>.</span>
+    </p>
   </section>
 
   <section>
-    <h2><span class="num">05</span>Compras dentro de la app</h2>
-    <p>Ofrecemos compras únicas (no suscripciones) para desbloquear funciones PRO y eliminar anuncios. Todas las transacciones son procesadas por Google Play. Podés restaurar tus compras en cualquier momento desde la pantalla de pago.</p>
+    <h2><span class="num">05</span>
+      <span class="es">Compras dentro de la app</span>
+      <span class="en">In-App Purchases</span>
+    </h2>
+    <p>
+      <span class="es">Ofrecemos compras únicas (no suscripciones) para desbloquear funciones PRO y eliminar anuncios. Todas las transacciones son procesadas por Google Play. Podés restaurar tus compras en cualquier momento desde la pantalla de pago.</span>
+      <span class="en">We offer one-time purchases (not subscriptions) to unlock PRO features and remove ads. All transactions are processed by Google Play. You can restore your purchases at any time from the payment screen.</span>
+    </p>
   </section>
 
   <section>
-    <h2><span class="num">06</span>Retención y eliminación de datos</h2>
-    <p>Los datos locales de tu álbum se almacenan en tu dispositivo. Podés eliminarlos en cualquier momento desinstalando la app. Los datos en la nube (si usás sincronización) pueden eliminarse contactándonos.</p>
+    <h2><span class="num">06</span>
+      <span class="es">Retención y eliminación de datos</span>
+      <span class="en">Data Retention & Deletion</span>
+    </h2>
+    <p>
+      <span class="es">Los datos locales de tu álbum se almacenan en tu dispositivo. Podés eliminarlos en cualquier momento desinstalando la app. Los datos en la nube pueden eliminarse contactándonos.</span>
+      <span class="en">Your album's local data is stored on your device. You can delete it at any time by uninstalling the app. Cloud data can be deleted by contacting us.</span>
+    </p>
   </section>
 
   <section>
-    <h2><span class="num">07</span>Menores de edad</h2>
-    <p>Album Tracker no está dirigida a menores de 13 años. No recopilamos intencionalmente información personal de niños. Si sos padre o tutor y creés que tu hijo nos proporcionó datos, contactanos para eliminarlos.</p>
+    <h2><span class="num">07</span>
+      <span class="es">Menores de edad</span>
+      <span class="en">Minors</span>
+    </h2>
+    <p>
+      <span class="es">Album Tracker no está dirigida a menores de 13 años. No recopilamos intencionalmente información personal de niños. Si sos padre o tutor y creés que tu hijo nos proporcionó datos, contactanos para eliminarlos.</span>
+      <span class="en">Album Tracker is not directed at children under 13. We do not intentionally collect personal information from children. If you are a parent or guardian and believe your child provided us data, contact us for deletion.</span>
+    </p>
   </section>
 
   <section>
-    <h2><span class="num">08</span>Cambios a esta política</h2>
-    <p>Podemos actualizar esta política periódicamente. Te notificaremos sobre cambios significativos mediante una actualización en la app. El uso continuado de la app después de los cambios implica tu aceptación.</p>
-
+    <h2><span class="num">08</span>
+      <span class="es">Cambios a esta política</span>
+      <span class="en">Changes to This Policy</span>
+    </h2>
+    <p>
+      <span class="es">Podemos actualizar esta política periódicamente. Te notificaremos sobre cambios significativos mediante una actualización en la app. El uso continuado implica tu aceptación.</span>
+      <span class="en">We may update this policy periodically. We will notify you of significant changes through an app update. Continued use implies your acceptance.</span>
+    </p>
     <div class="contact-box">
-      <h3>¿Preguntas?</h3>
-      <p>Si tenés dudas sobre esta política de privacidad, podés contactarnos en:<br>
-      <a href="mailto:ivancardozo.dev@gmail.com">ivancardozo.dev@gmail.com</a></p>
+      <h3><span class="es">¿Preguntas?</span><span class="en">Questions?</span></h3>
+      <p>
+        <span class="es">Si tenés dudas sobre esta política, contactanos en:</span>
+        <span class="en">If you have questions about this policy, contact us at:</span>
+        <br><a href="mailto:ivancardozo.dev@gmail.com">ivancardozo.dev@gmail.com</a>
+      </p>
     </div>
   </section>
 
@@ -231,6 +397,30 @@
 <footer>
   © 2026 Album Tracker · Ivan Cardozo · Argentina
 </footer>
+
+<script>
+  const html = document.documentElement;
+
+  function toggleTheme() {
+    const cur = html.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('at-theme', next);
+    document.getElementById('themeIcon').textContent = next === 'dark' ? '☀️' : '🌙';
+  }
+
+  function toggleLang() {
+    const cur = html.getAttribute('data-lang');
+    html.setAttribute('data-lang', cur === 'es' ? 'en' : 'es');
+    localStorage.setItem('at-lang', cur === 'es' ? 'en' : 'es');
+  }
+
+  // Load saved prefs
+  const savedTheme = localStorage.getItem('at-theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  document.getElementById('themeIcon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  html.setAttribute('data-lang', localStorage.getItem('at-lang') || 'es');
+</script>
 
 </body>
 </html>
